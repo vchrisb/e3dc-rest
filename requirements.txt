@@ -1,0 +1,4 @@
+git+https://github.com/vchrisb/python-e3dc@python3_tmp
+Flask-HTTPAuth
+Flask-RESTful
+gunicorn
