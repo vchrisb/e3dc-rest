@@ -1,0 +1,13 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+    name: e3dc-rest-ingress
+spec:
+    rules:
+    - host: e3dc-rest.home.banck.net
+    http:
+        paths:
+        - path: /
+        backend:
+            serviceName: e3dc-rest-service
+            servicePort: web

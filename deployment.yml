@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: e3dc-rest
+  labels:
+    app: e3dc-rest
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: e3dc-rest
+  template:
+    metadata:
+      labels:
+        app: e3dc-rest
+    spec:
+      containers:
+      - name: e3dc-rest
+        image: vchrisb/e3dc-rest:latest
+        ports:
+        - containerPort: 8080
+        env:
+        - name: E3DC_IP_ADDRESS
+          valueFrom:
+            secretKeyRef:
+              name: e3dc-secret
+              key: ip_address
+        - name: E3DC_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: e3dc-secret
+              key: username
+        - name: E3DC_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: e3dc-secret
+              key: password
+        - name: E3DC_KEY
+          valueFrom:
+            secretKeyRef:
+              name: e3dc-secret
+              key: key
+        - name: ADMIN_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: e3dc-secret
+              key: admin_password

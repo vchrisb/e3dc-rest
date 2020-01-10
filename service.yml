@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+    name: e3dc-rest-service
+spec:
+    selector:
+    app: e3dc-rest
+    ports:
+    - name: web
+        protocol: TCP
+        port: 8080
+        targetPort: 8080
