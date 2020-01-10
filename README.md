@@ -34,10 +34,12 @@ gunicorn --bind 0.0.0.0:8080 wsgi:app --access-logfile -
 ## Start Docker
 
 ```
-docker build . -t vchrisb/e3dc-rest
-docker run --name e3dc-rest -p 8080:8080 -e E3DC_IP_ADDRESS -e E3DC_USERNAME -e E3DC_PASSWORD -e E3DC_KEY -e ADMIN_PASSWORD="admin" vchrisb/e3dc-rest
+docker build . -t e3dc-rest
+docker run --name e3dc-rest -p 8080:8080 -e E3DC_IP_ADDRESS -e E3DC_USERNAME -e E3DC_PASSWORD -e E3DC_KEY -e ADMIN_PASSWORD="admin" e3dc-rest
 
 ```
+
+Multi Arch Images are available with `vchrisb/e3dc-rest` here https://hub.docker.com/repository/docker/vchrisb/e3dc-rest
 
 ## Use
 
