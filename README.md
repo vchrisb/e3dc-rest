@@ -13,10 +13,21 @@ export ADMIN_PASSWORD='admin'
 
 ## Start local
 
+### Prepare
 ```
 python -m venv .venv
 source .venv
 pip install -r requirements.txt
+```
+
+### Start
+
+Dev Webserver:
+```
+python api.py
+```
+or use
+```
 gunicorn --bind 0.0.0.0:8080 wsgi:app --access-logfile -
 ```
 
