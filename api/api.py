@@ -11,7 +11,7 @@ import os
 app = Flask(__name__)
 api = Api(app)
 auth = HTTPBasicAuth()
-app.config['RESTFUL_JSON'] = {'default':to_serializable}
+app.config['RESTFUL_JSON'] = {"sort_keys":True, 'default':to_serializable}
 
 try:
     IP_ADDRESS = os.environ['E3DC_IP_ADDRESS']
@@ -51,7 +51,7 @@ class battery_data(Resource):
 
 class pvi_data(Resource):
     def get(self):
-        return e3dc.poll(keepAlive = True)
+        return e3dc.get_pvi_data(keepAlive = True)
 
 class power_settings(Resource):
     def get(self):
