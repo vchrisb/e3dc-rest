@@ -14,9 +14,7 @@ jobs:
         id: prepare
         run: |
           if [[ $GITHUB_REF == refs/tags/* ]]; then
-            TAG=${GITHUB_REF#refs/tags/}
-            echo ::set-output name=tag_name::${TAG}
-            echo ::set-output name=version::${TAG%-*}
+            echo ::set-output name=version::${GITHUB_REF#refs/tags/}
           else
             echo ::set-output name=version::snapshot
           fi
