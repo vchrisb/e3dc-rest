@@ -35,24 +35,13 @@ jobs:
         name: Checkout
         uses: actions/checkout@v1
       -
-        name: Docker Buildx (no push)
-        run: |
-          docker buildx build --platform ${{ steps.prepare.outputs.docker_platforms }} \
-            --output "type=image,push=false" \
-            --build-arg "BUILD_DATE=${{ steps.prepare.outputs.build_date }}" \
-            --build-arg "VCS_REF=${GITHUB_SHA::8}" \
-            --build-arg "VERSION=${{ steps.prepare.outputs.version }}" \
-            --tag "${{ steps.prepare.outputs.docker_image }}:latest" \
-            --tag "${{ steps.prepare.outputs.docker_image }}:${{ steps.prepare.outputs.version }}" \
-            --file Dockerfile .
-      -
         name: Docker Login
         env:
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
         run: |
           echo "${DOCKER_PASSWORD}" | docker login --username "${{ steps.prepare.outputs.docker_username }}" --password-stdin
       -
-        name: Docker Buildx (push)
+        name: Docker Buildx
         run: |
           docker buildx build --platform ${{ steps.prepare.outputs.docker_platforms }} \
             --output "type=image,push=true" \
@@ -60,6 +49,16 @@ jobs:
             --build-arg "VCS_REF=${GITHUB_SHA::8}" \
             --build-arg "VERSION=${{ steps.prepare.outputs.version }}" \
             --tag "${{ steps.prepare.outputs.docker_image }}:${{ steps.prepare.outputs.version }}" \
+            --file Dockerfile .
+      -
+        name: Docker Buildx (latest tag)
+        if: success() && startsWith(github.ref, 'refs/tags/')
+        run: |
+          docker buildx build --platform ${{ steps.prepare.outputs.docker_platforms }} \
+            --output "type=image,push=true" \
+            --build-arg "BUILD_DATE=${{ steps.prepare.outputs.build_date }}" \
+            --build-arg "VCS_REF=${GITHUB_SHA::8}" \
+            --build-arg "VERSION=${{ steps.prepare.outputs.version }}" \
             --tag "${{ steps.prepare.outputs.docker_image }}:latest" \
             --file Dockerfile .
       -
