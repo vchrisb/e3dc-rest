@@ -61,43 +61,46 @@ class power_settings(Resource):
         if not request.is_json:
             return {'message': 'not an application/json content type'}, 400
         content = request.json
-        if "powerLimitsUsed" in content:
-            battery_data = e3dc.get_power_settings(keepAlive = True)
+        if content.keys() & ['powerLimitsUsed', 'powerSaveEnabled', 'weatherRegulatedChargeEnabled' ]:
+            if "powerLimitsUsed" in content:
+                battery_data = e3dc.get_power_settings(keepAlive = True)
 
-            if "maxChargePower" in content:
-                battery_data["maxChargePower"] = content["maxChargePower"]
+                if "maxChargePower" in content:
+                    battery_data["maxChargePower"] = content["maxChargePower"]
 
-            if "maxDischargePower" in content:
-                battery_data["maxDischargePower"] = content["maxDischargePower"]
-            
-            if "dischargeStartPower" in content:
-                battery_data["dischargeStartPower"] = content["dischargeStartPower"]
+                if "maxDischargePower" in content:
+                    battery_data["maxDischargePower"] = content["maxDischargePower"]
+                
+                if "dischargeStartPower" in content:
+                    battery_data["dischargeStartPower"] = content["dischargeStartPower"]
 
-            if isinstance(content["powerLimitsUsed"], bool):
-                req = e3dc.set_power_limits(enable = content["powerLimitsUsed"], max_charge = battery_data["maxChargePower"],  max_discharge = battery_data["maxDischargePower"],  discharge_start = battery_data["dischargeStartPower"], keepAlive = True)
-            else:
-                return {'message': 'powerLimitsUsed is not a boolean'}, 501 
-            
-            if req == -1:
-                return {'message': 'error updating power limits'}, 501 
-    
-        if "powerSaveEnabled" in content:
-            if isinstance(content["powerSaveEnabled"], bool):
-                req = e3dc.set_powersave(enable = content["powerSaveEnabled"], keepAlive = True)
-            else:
-                return {'message': 'powerSaveEnabled is not a boolean'}, 501 
+                if isinstance(content["powerLimitsUsed"], bool):
+                    req = e3dc.set_power_limits(enable = content["powerLimitsUsed"], max_charge = battery_data["maxChargePower"],  max_discharge = battery_data["maxDischargePower"],  discharge_start = battery_data["dischargeStartPower"], keepAlive = True)
+                else:
+                    return {'message': 'powerLimitsUsed is not a boolean'}, 501 
+                
+                if req == -1:
+                    return {'message': 'error updating power limits'}, 501 
+        
+            if "powerSaveEnabled" in content:
+                if isinstance(content["powerSaveEnabled"], bool):
+                    req = e3dc.set_powersave(enable = content["powerSaveEnabled"], keepAlive = True)
+                else:
+                    return {'message': 'powerSaveEnabled is not a boolean'}, 501 
 
-            if req == -1:
-                return {'message': 'error updating Power Save'}, 501
+                if req == -1:
+                    return {'message': 'error updating Power Save'}, 501
 
-        if "weatherRegulatedChargeEnabled" in content:
-            if isinstance(content["weatherRegulatedChargeEnabled"], bool):
-                req = e3dc.set_weather_regulated_charge(enable = content["weatherRegulatedChargeEnabled"], keepAlive = True)
-            else:
-                return {'message': 'weatherRegulatedChargeEnabled is not a boolean'}, 501 
+            if "weatherRegulatedChargeEnabled" in content:
+                if isinstance(content["weatherRegulatedChargeEnabled"], bool):
+                    req = e3dc.set_weather_regulated_charge(enable = content["weatherRegulatedChargeEnabled"], keepAlive = True)
+                else:
+                    return {'message': 'weatherRegulatedChargeEnabled is not a boolean'}, 501 
 
-            if req == -1:
-                return {'message': 'error updating Weather Regulated Charge'}, 501
+                if req == -1:
+                    return {'message': 'error updating Weather Regulated Charge'}, 501
+        else:
+            return {'message': 'any of key powerLimitsUsed, powerSaveEnabled or weatherRegulatedChargeEnabled is required'}, 501
 
         return {'message': 'success'}, 200 
 
