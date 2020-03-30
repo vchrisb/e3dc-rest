@@ -28,7 +28,7 @@ python3 -m venv .venv
 
 then you can go into the new made environment and install the requirements
 ```
-source .venv
+source .venv/bin/activate
 pip3 install -r requirements.txt
 ```
 
