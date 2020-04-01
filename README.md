@@ -1,36 +1,49 @@
 # e3dc-rest
-a simple REST API to access a E3DC system
+This is a simple REST API to access a E3DC system
 
-## Required Configuration
+## Getting Started
+This script uses a Python library which can be found here: https://github.com/fsantini/python-e3dc
+and exposes the values as REST API endpoints.
 
+The API uses exposed environment variables to access the E3DC.
+
+## Configuring the E3DC correctly
+- ToDo...
+
+### Local startup
+
+You need to export the variables so the script can read them
 ```
 export E3DC_IP_ADDRESS='192.168.1.99'
 export E3DC_USERNAME='use@domain.com'
 export E3DC_PASSWORD='Passw0rd'
 export E3DC_KEY='secretkey'
 export ADMIN_PASSWORD='admin'
+```                                                         
+
+Create a self contained environment
+```
+python3 -m venv .venv
 ```
 
-## Start
-
-### Local
-
+then you can go into the new made environment and install the requirements
 ```
-python -m venv .venv
-source .venv
-pip install -r requirements.txt
+source .venv/bin/activate
+pip3 install -r requirements.txt
 ```
 
 Dev Webserver:
 ```
-python api.py
+cd api
+python3 api.py
 ```
 or use
 ```
+cd api
 gunicorn --bind 0.0.0.0:8080 wsgi:app --access-logfile -
 ```
 
-### Container
+### Container/Kubernetes
 
 #### Build
 
@@ -57,7 +70,7 @@ Deploy with Ingress Controller:
 ```
 kubectl apply -f ingress.yml -f service-ingress.yml -f deplyoment.yml
 ```
-## Use
+## Calling the API
 
 ```
 curl http://admin:admin@localhost:8080/api/poll
