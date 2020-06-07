@@ -2,3 +2,4 @@ git+https://github.com/fsantini/python-e3dc
 Flask-HTTPAuth
 Flask-RESTful
 gunicorn
+webargs

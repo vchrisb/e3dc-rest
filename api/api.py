@@ -5,8 +5,11 @@ from flask_restful import Resource, Api
 from werkzeug.security import generate_password_hash, check_password_hash
 from e3dc import E3DC
 from json_serialize import to_serializable
+import datetime
 import json
 import os
+from webargs import fields, validate
+from webargs.flaskparser import use_args, parser, abort
 
 app = Flask(__name__)
 api = Api(app)
@@ -126,13 +129,35 @@ class idle_periods(Resource):
         except Exception as e:
             return {'message': e}, 400
 
-api.add_resource(poll, '/api/poll')
-api.add_resource(system_info, '/api/system_info')
-api.add_resource(battery_data, '/api/battery_data')
-api.add_resource(pvi_data, '/api/pvi_data')
-api.add_resource(power_data, '/api/power_data')
-api.add_resource(power_settings, '/api/power_settings')
-api.add_resource(idle_periods, '/api/idle_periods')
+class db_data(Resource):
+    dateadd_args = {
+        "startDate": fields.Date(required=False),
+        "timespan": fields.Str(missing="DAY", validate=validate.OneOf(["DAY", "MONTH", "YEAR"])),
+    }
+    @use_args(dateadd_args, location="query")
+    def get(self, args):
+        if "startDate" not in args:
+            startDate = datetime.date.today()
+        else:
+            startDate = args["startDate"]
+        return e3dc.get_db_data(startDate = startDate, timespan = args["timespan"], keepAlive = True)
+
+# This error handler is necessary for usage with Flask-RESTful
+@parser.error_handler
+def handle_request_parsing_error(err, req, schema, *, error_status_code, error_headers):
+    """webargs error handler that uses Flask-RESTful's abort function to return
+    a JSON error response to the client.
+    """
+    abort(error_status_code, errors=err.messages)
 
 if __name__ == '__main__':
+    api.add_resource(poll, '/api/poll')
+    api.add_resource(system_info, '/api/system_info')
+    api.add_resource(battery_data, '/api/battery_data')
+    api.add_resource(pvi_data, '/api/pvi_data')
+    api.add_resource(power_data, '/api/power_data')
+    api.add_resource(power_settings, '/api/power_settings')
+    api.add_resource(idle_periods, '/api/idle_periods')
+    api.add_resource(db_data, '/api/db_data')
+
     app.run(debug=True)
