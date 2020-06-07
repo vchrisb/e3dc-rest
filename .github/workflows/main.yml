@@ -27,7 +27,7 @@ jobs:
         name: Set up Docker Buildx
         uses: crazy-max/ghaction-docker-buildx@v1
         with:
-          version: latest
+          buildx-version: latest
       -
         # https://github.com/actions/checkout
         name: Checkout
