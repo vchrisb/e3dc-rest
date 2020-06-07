@@ -150,7 +150,6 @@ def handle_request_parsing_error(err, req, schema, *, error_status_code, error_h
     """
     abort(error_status_code, errors=err.messages)
 
-if __name__ == '__main__':
     api.add_resource(poll, '/api/poll')
     api.add_resource(system_info, '/api/system_info')
     api.add_resource(battery_data, '/api/battery_data')
@@ -160,4 +159,5 @@ if __name__ == '__main__':
     api.add_resource(idle_periods, '/api/idle_periods')
     api.add_resource(db_data, '/api/db_data')
 
+if __name__ == '__main__':
     app.run(debug=True)
