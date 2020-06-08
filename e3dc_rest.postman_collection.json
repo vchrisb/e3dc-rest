@@ -1,0 +1,369 @@
+{
+	"info": {
+		"_postman_id": "4c63ec7d-9b6d-41f3-9cb8-0d236b770b12",
+		"name": "e3dc_rest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "get battery_data",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"powerLimitsUsed\": false\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/api/battery_data",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"battery_data"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "poll",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"powerLimitsUsed\": false\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/api/poll",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"poll"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get system_info",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"powerLimitsUsed\": false\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/api/system_info",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"system_info"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get pvi_data",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"powerLimitsUsed\": false\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/api/pvi_data",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"pvi_data"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get db_data",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"powerLimitsUsed\": false\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/api/db_data?startDate=2020-05-02&timespan=MONTH",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"db_data"
+					],
+					"query": [
+						{
+							"key": "startDate",
+							"value": "2020-05-02"
+						},
+						{
+							"key": "timespan",
+							"value": "MONTH"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get power_settings",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"powerLimitsUsed\": false\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/api/power_settings",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"power_settings"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get power_data",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"powerLimitsUsed\": false\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/api/power_data",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"power_data"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "set power_settings",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"powerLimitsUsed\": true,\n    \"maxChargePower\":200\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/api/power_settings",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"power_settings"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get idle_periods",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"powerLimitsUsed\": false\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/api/idle_periods",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"idle_periods"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "set idle_periods",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"idleCharge\": [\n        {\n            \"active\": false,\n            \"day\": 0,\n            \"end\": [\n                22,\n                0\n            ],\n            \"start\": [\n                1,\n                11\n            ]\n        }]\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/api/idle_periods",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"idle_periods"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "admin",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "admin",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "a60c8a79-e0c5-4b98-adc0-dd4ac0ce5259",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "91fb8f2f-b8ec-4c93-b29e-ac02a6784f65",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "536edd2a-ec61-4e20-8102-732e8cd0caa6",
+			"key": "base_url",
+			"value": "https://server.domain.tld",
+			"type": "string"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
