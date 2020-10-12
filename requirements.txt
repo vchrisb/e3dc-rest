@@ -1,4 +1,4 @@
-git+https://github.com/fsantini/python-e3dc@d594a08694439a417db70a78b802a5a905c2beac
+git+https://github.com/fsantini/python-e3dc@8305c1009512f2596b5b239b63e5dfa9c7edf837
 Flask-HTTPAuth
 Flask-RESTful
 gunicorn
