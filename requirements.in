@@ -1,0 +1,5 @@
+git+https://github.com/fsantini/python-e3dc@8305c1009512f2596b5b239b63e5dfa9c7edf837
+Flask-HTTPAuth
+Flask-RESTful
+gunicorn
+webargs
