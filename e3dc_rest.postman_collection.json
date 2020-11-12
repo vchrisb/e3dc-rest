@@ -233,6 +233,37 @@
 			"response": []
 		},
 		{
+			"name": "get power_data_ext",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"powerLimitsUsed\": false\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/api/power_data_ext",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"power_data_ext"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "set power_settings",
 			"request": {
 				"method": "POST",
