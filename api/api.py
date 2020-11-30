@@ -60,6 +60,10 @@ class power_data(Resource):
     def get(self):
         return e3dc.get_power_data(keepAlive = True)
 
+class power_data_ext(Resource):
+    def get(self):
+        return e3dc.get_power_data_ext(keepAlive = True)
+
 class power_settings(Resource):
     def get(self):
         return e3dc.get_power_settings(keepAlive = True)
@@ -155,6 +159,7 @@ api.add_resource(system_info, '/api/system_info')
 api.add_resource(battery_data, '/api/battery_data')
 api.add_resource(pvi_data, '/api/pvi_data')
 api.add_resource(power_data, '/api/power_data')
+api.add_resource(power_data_ext, '/api/power_data_ext')
 api.add_resource(power_settings, '/api/power_settings')
 api.add_resource(idle_periods, '/api/idle_periods')
 api.add_resource(db_data, '/api/db_data')
