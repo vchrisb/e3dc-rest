@@ -2,7 +2,7 @@ aniso8601==8.0.0
 certifi==2020.6.20
 chardet==3.0.4
 click==7.1.2
-git+https://github.com/fsantini/python-e3dc@587afdff08fa3c69e2cc00b5f0c5c4b0a0f518be
+git+https://github.com/fsantini/python-e3dc@f0c7755c936347f155f7e7e8cd093396c5536f83
 flask-httpauth==4.1.0
 flask-restful==0.3.8
 flask==1.1.2
