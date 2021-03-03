@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: e3dc-rest
-        image: vchrisb/e3dc-rest:latest
+        image: ghcr.io/vchrisb/e3dc-rest:latest
         ports:
         - containerPort: 8080
         env:
