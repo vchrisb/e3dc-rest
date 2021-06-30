@@ -1,4 +1,4 @@
-FROM python:3.9.5-alpine3.13
+FROM python:3.10.0b3-alpine3.13
 ADD ./api /app
 WORKDIR /app
 ADD requirements.txt /
