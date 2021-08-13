@@ -12,14 +12,14 @@ charset-normalizer==2.0.3
     # via requests
 click==8.0.1
     # via flask
-flask-httpauth==4.4.0
-    # via -r requirements.in
-flask-restful==0.3.9
-    # via -r requirements.in
 flask==2.0.1
     # via
     #   flask-httpauth
     #   flask-restful
+flask-httpauth==4.4.0
+    # via -r requirements.in
+flask-restful==0.3.9
+    # via -r requirements.in
 gunicorn==20.1.0
     # via -r requirements.in
 idna==3.2
@@ -53,7 +53,7 @@ tzlocal==2.1
     # via pye3dc
 urllib3==1.26.6
     # via requests
-webargs==8.0.0
+webargs==8.0.1
     # via -r requirements.in
 websocket-client==1.1.0
     # via pye3dc
