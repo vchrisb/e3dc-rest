@@ -8,7 +8,7 @@ aniso8601==9.0.1
     # via flask-restful
 certifi==2021.5.30
     # via requests
-charset-normalizer==2.0.3
+charset-normalizer==2.0.6
     # via requests
 click==8.0.1
     # via flask
@@ -16,7 +16,7 @@ flask-httpauth==4.4.0
     # via -r requirements.in
 flask-restful==0.3.9
     # via -r requirements.in
-flask==2.0.1
+flask==2.0.2
     # via
     #   flask-httpauth
     #   flask-restful
@@ -26,11 +26,11 @@ idna==3.2
     # via requests
 itsdangerous==2.0.1
     # via flask
-jinja2==3.0.1
+jinja2==3.0.2
     # via flask
 markupsafe==2.0.1
     # via jinja2
-marshmallow==3.12.2
+marshmallow==3.13.0
     # via webargs
 py3rijndael==0.3.3
     # via pye3dc
@@ -38,24 +38,23 @@ git+https://github.com/fsantini/python-e3dc@82146c4b4a21a117f9d7928e64e95a8b5f76
     # via -r requirements.in
 python-dateutil==2.8.2
     # via pye3dc
-pytz==2021.1
+pytz==2021.3
     # via
     #   flask-restful
     #   pye3dc
-    #   tzlocal
 requests==2.26.0
     # via pye3dc
 six==1.16.0
     # via
     #   flask-restful
     #   python-dateutil
-tzlocal==2.1
+tzlocal==3.0
     # via pye3dc
-urllib3==1.26.6
+urllib3==1.26.7
     # via requests
-webargs==8.0.0
+webargs==8.0.1
     # via -r requirements.in
-websocket-client==1.1.0
+websocket-client==1.2.1
     # via pye3dc
 werkzeug==2.0.1
     # via flask
