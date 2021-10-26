@@ -12,14 +12,14 @@ charset-normalizer==2.0.6
     # via requests
 click==8.0.1
     # via flask
-flask-httpauth==4.4.0
-    # via -r requirements.in
-flask-restful==0.3.9
-    # via -r requirements.in
 flask==2.0.2
     # via
     #   flask-httpauth
     #   flask-restful
+flask-httpauth==4.5.0
+    # via -r requirements.in
+flask-restful==0.3.9
+    # via -r requirements.in
 gunicorn==20.1.0
     # via -r requirements.in
 idna==3.2
@@ -34,7 +34,7 @@ marshmallow==3.13.0
     # via webargs
 py3rijndael==0.3.3
     # via pye3dc
-git+https://github.com/fsantini/python-e3dc@82146c4b4a21a117f9d7928e64e95a8b5f7632f4
+pye3dc @ git+https://github.com/fsantini/python-e3dc@82146c4b4a21a117f9d7928e64e95a8b5f7632f4
     # via -r requirements.in
 python-dateutil==2.8.2
     # via pye3dc
