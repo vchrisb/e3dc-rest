@@ -58,6 +58,11 @@ class system_info(Resource):
         return e3dc.get_system_info(keepAlive=True)
 
 
+class system_status(Resource):
+    def get(self):
+        return e3dc.get_system_status(keepAlive=True)
+
+
 class battery_data(Resource):
     def get(self):
         return e3dc.get_battery_data(keepAlive=True)
@@ -197,6 +202,7 @@ def handle_request_parsing_error(err, req, schema, *, error_status_code, error_h
 
 api.add_resource(poll, "/api/poll")
 api.add_resource(system_info, "/api/system_info")
+api.add_resource(system_status, "/api/system_status")
 api.add_resource(battery_data, "/api/battery_data")
 api.add_resource(pvi_data, "/api/pvi_data")
 api.add_resource(power_data, "/api/power_data")
