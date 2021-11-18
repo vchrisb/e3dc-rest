@@ -6,13 +6,13 @@
 #
 aniso8601==9.0.1
     # via flask-restful
-certifi==2021.5.30
+certifi==2021.10.8
     # via requests
-charset-normalizer==2.0.6
+charset-normalizer==2.0.7
     # via requests
-click==8.0.1
+click==8.0.3
     # via flask
-flask-httpauth==4.4.0
+flask-httpauth==4.5.0
     # via -r requirements.in
 flask-restful==0.3.9
     # via -r requirements.in
@@ -22,22 +22,24 @@ flask==2.0.2
     #   flask-restful
 gunicorn==20.1.0
     # via -r requirements.in
-idna==3.2
+idna==3.3
     # via requests
 itsdangerous==2.0.1
     # via flask
-jinja2==3.0.2
+jinja2==3.0.3
     # via flask
 markupsafe==2.0.1
     # via jinja2
-marshmallow==3.13.0
+marshmallow==3.14.1
     # via webargs
 py3rijndael==0.3.3
     # via pye3dc
-git+https://github.com/fsantini/python-e3dc@82146c4b4a21a117f9d7928e64e95a8b5f7632f4
+git+https://github.com/fsantini/python-e3dc@1b5bb8013f08bcec4d6b3ccb7160c161755f9c23
     # via -r requirements.in
 python-dateutil==2.8.2
     # via pye3dc
+pytz-deprecation-shim==0.1.0.post0
+    # via tzlocal
 pytz==2021.3
     # via
     #   flask-restful
@@ -48,7 +50,9 @@ six==1.16.0
     # via
     #   flask-restful
     #   python-dateutil
-tzlocal==3.0
+tzdata==2021.5
+    # via pytz-deprecation-shim
+tzlocal==4.1
     # via pye3dc
 urllib3==1.26.7
     # via requests
@@ -56,7 +60,7 @@ webargs==8.0.1
     # via -r requirements.in
 websocket-client==1.2.1
     # via pye3dc
-werkzeug==2.0.1
+werkzeug==2.0.2
     # via flask
 
 # The following packages are considered to be unsafe in a requirements file:
