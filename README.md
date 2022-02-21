@@ -61,7 +61,7 @@ docker run --name e3dc-rest -p 8080:8080 -e E3DC_IP_ADDRESS -e E3DC_USERNAME -e 
 
 Create Secret:
 ```
-kubectl create secret generic e3dc-secret --from-literal=username='user@domain.com' --from-literal=password='password' --from-literal=ip_address='192.168.1.99' --from-literal=key='password' --from-literal=admin_password='admin'
+kubectl create secret generic e3dc-secret --from-literal=username='user@domain.com' --from-literal=password='password' --from-literal=ip_address='192.168.1.99' --from-literal=key='password' --from-literal=config='{}' --from-literal=admin_password='admin'
 ```
 
 Deploy with Ingress Controller:

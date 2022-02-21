@@ -40,6 +40,11 @@ spec:
             secretKeyRef:
               name: e3dc-secret
               key: key
+        - name: E3DC_CONFIG
+          valueFrom:
+            secretKeyRef:
+              name: e3dc-secret
+              key: config
         - name: ADMIN_PASSWORD
           valueFrom:
             secretKeyRef:

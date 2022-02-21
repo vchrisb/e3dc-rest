@@ -1,4 +1,5 @@
 import datetime
+import json
 import os
 
 from e3dc import E3DC
@@ -21,10 +22,13 @@ try:
     PASSWORD = os.environ["E3DC_PASSWORD"]
     KEY = os.environ["E3DC_KEY"]
     ADMIN_PASSWORD = os.environ["ADMIN_PASSWORD"]
+    CONFIG = os.getenv("E3DC_CONFIG", "{}")
 except KeyError:
     raise Exception(
         "Environmental Variables E3DC_IP_ADDRESS, E3DC_USERNAME, E3DC_PASSWORD E3DC_KEY and ADMIN_PASSWORD need to be present!"
     )
+
+CONFIG = json.loads(CONFIG)
 
 e3dc = E3DC(
     E3DC.CONNECT_LOCAL,
@@ -32,6 +36,7 @@ e3dc = E3DC(
     password=PASSWORD,
     ipAddress=IP_ADDRESS,
     key=KEY,
+    configuration=CONFIG,
 )
 
 users = {"admin": generate_password_hash(ADMIN_PASSWORD)}
@@ -68,19 +73,29 @@ class battery_data(Resource):
         return e3dc.get_battery_data(keepAlive=True)
 
 
+class batteries_data(Resource):
+    def get(self):
+        return e3dc.get_batteries_data(keepAlive=True)
+
+
 class pvi_data(Resource):
     def get(self):
         return e3dc.get_pvi_data(keepAlive=True)
 
 
-class power_data(Resource):
+class pvis_data(Resource):
     def get(self):
-        return e3dc.get_power_data(keepAlive=True)
+        return e3dc.get_pvis_data(keepAlive=True)
 
 
-class power_data_ext(Resource):
+class powermeter_data(Resource):
     def get(self):
-        return e3dc.get_power_data_ext(keepAlive=True)
+        return e3dc.get_powermeter_data(keepAlive=True)
+
+
+class powermeters_data(Resource):
+    def get(self):
+        return e3dc.get_powermeters_data(keepAlive=True)
 
 
 class power_settings(Resource):
@@ -204,9 +219,11 @@ api.add_resource(poll, "/api/poll")
 api.add_resource(system_info, "/api/system_info")
 api.add_resource(system_status, "/api/system_status")
 api.add_resource(battery_data, "/api/battery_data")
+api.add_resource(batteries_data, "/api/batteries_data")
 api.add_resource(pvi_data, "/api/pvi_data")
-api.add_resource(power_data, "/api/power_data")
-api.add_resource(power_data_ext, "/api/power_data_ext")
+api.add_resource(pvis_data, "/api/pvis_data")
+api.add_resource(powermeter_data, "/api/powermeter_data")
+api.add_resource(powermeters_data, "/api/powermeters_data")
 api.add_resource(power_settings, "/api/power_settings")
 api.add_resource(idle_periods, "/api/idle_periods")
 api.add_resource(db_data, "/api/db_data")
