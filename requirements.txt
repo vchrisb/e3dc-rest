@@ -36,7 +36,7 @@ packaging==21.3
     # via webargs
 py3rijndael==0.3.3
     # via pye3dc
-pye3dc==0.7.1
+pye3dc==0.7.3
     # via -r requirements.in
 pyparsing==3.0.7
     # via packaging
