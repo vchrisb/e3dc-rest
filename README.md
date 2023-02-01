@@ -50,6 +50,9 @@ gunicorn --bind 0.0.0.0:8080 wsgi:app --access-logfile -
 
 ### Container/Kubernetes
 
+Prebuild images are pushed to `ghcr.io/vchrisb/e3dc-rest` with tags `latest`, `sha-xxxxxx` and version `0.0.x` available.
+Latest tags can be found here: https://github.com/vchrisb/e3dc-rest/pkgs/container/e3dc-rest
+
 #### Build
 
 ```
