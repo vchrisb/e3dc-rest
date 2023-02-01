@@ -40,7 +40,7 @@ packaging==23.0
     #   webargs
 py3rijndael==0.3.3
     # via pye3dc
-pye3dc==0.7.3
+pye3dc==0.7.4
     # via -r requirements.in
 python-dateutil==2.8.2
     # via pye3dc
