@@ -14,10 +14,15 @@ The API uses exposed environment variables to access the E3DC.
 
 You need to export the variables so the script can read them
 ```
+# IP address of your local E3DC system
 export E3DC_IP_ADDRESS='192.168.1.99'
+# username as used to log into the E3DC web portal
 export E3DC_USERNAME='use@domain.com'
+# password as used to log into the E3DC web portal
 export E3DC_PASSWORD='Passw0rd'
+# The E3DC RSCP Password (encryption key), as set on the device under Main Page -> Personalize -> User profile -> RSCP password
 export E3DC_KEY='secretkey'
+# Password to protect e3dc-rest api
 export ADMIN_PASSWORD='admin'
 ```                                                         
 
