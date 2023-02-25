@@ -12,7 +12,7 @@ charset-normalizer==3.0.1
     # via requests
 click==8.1.3
     # via flask
-flask==2.2.2
+flask==2.2.3
     # via
     #   flask-httpauth
     #   flask-restful
@@ -62,9 +62,9 @@ urllib3==1.26.14
     # via requests
 webargs==8.2.0
     # via -r requirements.in
-websocket-client==1.5.0
+websocket-client==1.5.1
     # via pye3dc
-werkzeug==2.2.2
+werkzeug==2.2.3
     # via flask
 
 # The following packages are considered to be unsafe in a requirements file:
