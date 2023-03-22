@@ -8,7 +8,7 @@ aniso8601==9.0.1
     # via flask-restful
 certifi==2022.12.7
     # via requests
-charset-normalizer==3.0.1
+charset-normalizer==3.1.0
     # via requests
 click==8.1.3
     # via flask
@@ -56,9 +56,9 @@ six==1.16.0
     #   python-dateutil
 tzdata==2022.7
     # via pytz-deprecation-shim
-tzlocal==4.2
+tzlocal==4.3
     # via pye3dc
-urllib3==1.26.14
+urllib3==1.26.15
     # via requests
 webargs==8.2.0
     # via -r requirements.in
