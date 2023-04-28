@@ -16,7 +16,7 @@ flask==2.2.3
     # via
     #   flask-httpauth
     #   flask-restful
-flask-httpauth==4.7.0
+flask-httpauth==4.8.0
     # via -r requirements.in
 flask-restful==0.3.9
     # via -r requirements.in
