@@ -6,19 +6,21 @@
 #
 aniso8601==9.0.1
     # via flask-restful
-certifi==2022.12.7
+blinker==1.6.2
+    # via flask
+certifi==2023.5.7
     # via requests
 charset-normalizer==3.1.0
     # via requests
 click==8.1.3
     # via flask
-flask==2.2.3
+flask==2.3.2
     # via
     #   flask-httpauth
     #   flask-restful
-flask-httpauth==4.7.0
+flask-httpauth==4.8.0
     # via -r requirements.in
-flask-restful==0.3.9
+flask-restful==0.3.10
     # via -r requirements.in
 gunicorn==20.1.0
     # via -r requirements.in
@@ -34,37 +36,33 @@ markupsafe==2.1.2
     #   werkzeug
 marshmallow==3.19.0
     # via webargs
-packaging==23.0
+packaging==23.1
     # via
     #   marshmallow
     #   webargs
 py3rijndael==0.3.3
     # via pye3dc
-pye3dc==0.7.4
+pye3dc==0.7.5
     # via -r requirements.in
 python-dateutil==2.8.2
     # via pye3dc
-pytz==2022.7.1
+pytz==2023.3
     # via flask-restful
-pytz-deprecation-shim==0.1.0.post0
-    # via tzlocal
-requests==2.28.2
+requests==2.31.0
     # via pye3dc
 six==1.16.0
     # via
     #   flask-restful
     #   python-dateutil
-tzdata==2022.7
-    # via pytz-deprecation-shim
-tzlocal==4.3
+tzlocal==5.0.1
     # via pye3dc
-urllib3==1.26.15
+urllib3==2.0.2
     # via requests
 webargs==8.2.0
     # via -r requirements.in
-websocket-client==1.5.1
+websocket-client==1.5.2
     # via pye3dc
-werkzeug==2.2.3
+werkzeug==2.3.4
     # via flask
 
 # The following packages are considered to be unsafe in a requirements file:
