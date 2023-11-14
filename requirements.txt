@@ -8,10 +8,6 @@ aniso8601==9.0.1
     # via flask-restful
 blinker==1.6.3
     # via flask
-certifi==2023.7.22
-    # via requests
-charset-normalizer==3.3.0
-    # via requests
 click==8.1.7
     # via flask
 flask==3.0.0
@@ -24,8 +20,6 @@ flask-restful==0.3.10
     # via -r requirements.in
 gunicorn==21.2.0
     # via -r requirements.in
-idna==3.4
-    # via requests
 itsdangerous==2.1.2
     # via flask
 jinja2==3.1.2
@@ -43,22 +37,18 @@ packaging==23.2
     #   webargs
 py3rijndael==0.3.3
     # via pye3dc
-pye3dc==0.8.0
+pye3dc==0.9.0
     # via -r requirements.in
 python-dateutil==2.8.2
     # via pye3dc
 pytz==2023.3.post1
     # via flask-restful
-requests==2.31.0
-    # via pye3dc
 six==1.16.0
     # via
     #   flask-restful
     #   python-dateutil
 tzlocal==5.1
     # via pye3dc
-urllib3==2.0.6
-    # via requests
 webargs==8.3.0
     # via -r requirements.in
 websocket-client==1.6.4
