@@ -59,7 +59,7 @@ tzlocal==5.1
     # via pye3dc
 urllib3==2.0.6
     # via requests
-webargs==8.3.0
+webargs==8.4.0
     # via -r requirements.in
 websocket-client==1.6.4
     # via pye3dc
