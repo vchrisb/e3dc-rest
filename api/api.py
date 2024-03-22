@@ -5,11 +5,11 @@ from typing import Any, TypeAlias
 
 from e3dc import E3DC
 from flask import Flask, request
-from flask_httpauth import HTTPBasicAuth 
-from flask_restful import Api, Resource 
+from flask_httpauth import HTTPBasicAuth
+from flask_restful import Api, Resource
 from json_serialize import to_serializable
 from webargs import fields, validate
-from webargs.flaskparser import abort, parser, use_args 
+from webargs.flaskparser import abort, parser, use_args
 from werkzeug.security import check_password_hash, generate_password_hash
 
 JSON: TypeAlias = dict[str, "JSON"] | list["JSON"] | str | int | float | bool | None
@@ -43,15 +43,15 @@ e3dc = E3DC(
 users = {"admin": generate_password_hash(ADMIN_PASSWORD)}
 
 
-@auth.verify_password 
+@auth.verify_password
 def verify_password(username: str, password: str):
     if users.get(username) is not None:
-        return check_password_hash(users.get(username), password) 
+        return check_password_hash(users.get(username), password)
     return False
 
 
 class Resource(Resource):
-    method_decorators = [auth.login_required] 
+    method_decorators = [auth.login_required]
 
 
 class poll(Resource):
