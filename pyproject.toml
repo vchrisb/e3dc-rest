@@ -12,3 +12,7 @@ exclude = '''
 
 [tool.pylint.messages_control]
 disable = "C0330, C0326"
+
+[tool.pyright]
+ignore = ["build/*", "dist/*", ".venv/*"]
+typeCheckingMode = "strict"

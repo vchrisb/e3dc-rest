@@ -1,9 +1,10 @@
 from datetime import datetime
 from functools import singledispatch
+from typing import Any
 
 
 @singledispatch
-def to_serializable(val):
+def to_serializable(val: Any):
     """Used by default."""
     return str(val)
 

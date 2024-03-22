@@ -1,15 +1,18 @@
 import datetime
 import json
 import os
+from typing import Any, TypeAlias
 
 from e3dc import E3DC
 from flask import Flask, request
-from flask_httpauth import HTTPBasicAuth
-from flask_restful import Api, Resource
+from flask_httpauth import HTTPBasicAuth 
+from flask_restful import Api, Resource 
 from json_serialize import to_serializable
 from webargs import fields, validate
-from webargs.flaskparser import abort, parser, use_args
+from webargs.flaskparser import abort, parser, use_args 
 from werkzeug.security import check_password_hash, generate_password_hash
+
+JSON: TypeAlias = dict[str, "JSON"] | list["JSON"] | str | int | float | bool | None
 
 app = Flask(__name__)
 api = Api(app)
@@ -22,13 +25,11 @@ try:
     PASSWORD = os.environ["E3DC_PASSWORD"]
     KEY = os.environ["E3DC_KEY"]
     ADMIN_PASSWORD = os.environ["ADMIN_PASSWORD"]
-    CONFIG = os.getenv("E3DC_CONFIG", "{}")
+    CONFIG = json.loads(os.getenv("E3DC_CONFIG", "{}"))
 except KeyError:
     raise Exception(
         "Environmental Variables E3DC_IP_ADDRESS, E3DC_USERNAME, E3DC_PASSWORD E3DC_KEY and ADMIN_PASSWORD need to be present!"
     )
-
-CONFIG = json.loads(CONFIG)
 
 e3dc = E3DC(
     E3DC.CONNECT_LOCAL,
@@ -42,15 +43,15 @@ e3dc = E3DC(
 users = {"admin": generate_password_hash(ADMIN_PASSWORD)}
 
 
-@auth.verify_password
-def verify_password(username, password):
-    if username in users:
-        return check_password_hash(users.get(username), password)
+@auth.verify_password 
+def verify_password(username: str, password: str):
+    if users.get(username) is not None:
+        return check_password_hash(users.get(username), password) 
     return False
 
 
 class Resource(Resource):
-    method_decorators = [auth.login_required]
+    method_decorators = [auth.login_required] 
 
 
 class poll(Resource):
@@ -68,6 +69,11 @@ class system_status(Resource):
         return e3dc.get_system_status(keepAlive=True)
 
 
+class batteries(Resource):
+    def get(self):
+        return e3dc.get_batteries(keepAlive=True)
+
+
 class battery_data(Resource):
     def get(self):
         return e3dc.get_battery_data(keepAlive=True)
@@ -78,6 +84,11 @@ class batteries_data(Resource):
         return e3dc.get_batteries_data(keepAlive=True)
 
 
+class pvis(Resource):
+    def get(self):
+        return e3dc.get_pvis(keepAlive=True)
+
+
 class pvi_data(Resource):
     def get(self):
         return e3dc.get_pvi_data(keepAlive=True)
@@ -86,6 +97,11 @@ class pvi_data(Resource):
 class pvis_data(Resource):
     def get(self):
         return e3dc.get_pvis_data(keepAlive=True)
+
+
+class powermeters(Resource):
+    def get(self):
+        return e3dc.get_powermeters(keepAlive=True)
 
 
 class powermeter_data(Resource):
@@ -105,8 +121,8 @@ class power_settings(Resource):
     def post(self):
         if not request.is_json:
             return {"message": "not an application/json content type"}, 400
-        content = request.json
-        if content.keys() & [
+        content: JSON = request.json
+        if isinstance(content, dict) and content.keys() & [
             "powerLimitsUsed",
             "powerSaveEnabled",
             "weatherRegulatedChargeEnabled",
@@ -176,7 +192,7 @@ class idle_periods(Resource):
         if not request.is_json:
             return {"message": "not an application/json content type"}, 400
 
-        content = request.json
+        content: JSON = request.json
 
         try:
             if e3dc.set_idle_periods(content, keepAlive=True):
@@ -196,11 +212,12 @@ class db_data(Resource):
     }
 
     @use_args(dateadd_args, location="query")
-    def get(self, args):
+    def get(self, args: dict[str, Any]):
         if "startDate" not in args:
             startDate = datetime.date.today()
         else:
             startDate = args["startDate"]
+
         return e3dc.get_db_data(
             startDate=startDate, timespan=args["timespan"], keepAlive=True
         )
@@ -218,10 +235,13 @@ def handle_request_parsing_error(err, req, schema, *, error_status_code, error_h
 api.add_resource(poll, "/api/poll")
 api.add_resource(system_info, "/api/system_info")
 api.add_resource(system_status, "/api/system_status")
+api.add_resource(batteries, "/api/batteries")
 api.add_resource(battery_data, "/api/battery_data")
 api.add_resource(batteries_data, "/api/batteries_data")
+api.add_resource(pvis, "/api/pvis")
 api.add_resource(pvi_data, "/api/pvi_data")
 api.add_resource(pvis_data, "/api/pvis_data")
+api.add_resource(powermeters, "/api/powermeters")
 api.add_resource(powermeter_data, "/api/powermeter_data")
 api.add_resource(powermeters_data, "/api/powermeters_data")
 api.add_resource(power_settings, "/api/power_settings")
@@ -229,4 +249,4 @@ api.add_resource(idle_periods, "/api/idle_periods")
 api.add_resource(db_data, "/api/db_data")
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=False)
